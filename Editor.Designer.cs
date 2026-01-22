@@ -30,13 +30,12 @@ namespace csharp_bmfg {
             // 
             // view_extern
             // 
-            view_extern.active = false;
             view_extern.Dock = DockStyle.Fill;
             view_extern.Location = new Point(0, 0);
-            view_extern.logCallback = null;
             view_extern.Name = "view_extern";
             view_extern.Size = new Size(624, 441);
             view_extern.TabIndex = 0;
+            view_extern.MouseDown += view_extern_MouseDown;
             // 
             // Editor
             // 

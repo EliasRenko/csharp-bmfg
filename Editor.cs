@@ -14,22 +14,25 @@ namespace csharp_bmfg {
             };
 
             view_extern.Init(callback);
+
+            // Events
+            this.FormClosing += Form1_FormClosing;
         }
 
-        public void Tick() {
-
+        public void UpdateFrame() {
+            view_extern.UpdateFrame();
         }
 
         public void PreRender() {
-
+            view_extern.PreRender();
         }
 
         public void Render() {
-
+            view_extern.Render();
         }
 
-        public void PostRender() {
-
+        public void SwapBuffers() {
+            view_extern.SwapBuffers();
         }
 
         #region Log
@@ -42,5 +45,18 @@ namespace csharp_bmfg {
         }
 
         #endregion
+
+        #region Events
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            view_extern.Release();
+            active = false;
+        }
+
+        #endregion
+
+        private void view_extern_MouseDown(object sender, MouseEventArgs e) {
+            view_extern.mouseClick(e.X, e.Y);
+        }
     }
 }

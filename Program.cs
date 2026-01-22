@@ -18,10 +18,11 @@ namespace csharp_bmfg {
 
             while (editor.active) {
 
-                editor.Tick();
+                editor.UpdateFrame();
+
                 editor.PreRender();
                 editor.Render();
-                editor.PostRender();
+                editor.SwapBuffers();
 
                 Application.DoEvents();
             }

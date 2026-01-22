@@ -36,11 +36,28 @@ namespace csharp_bmfg {
                 return;
             }
 
+            // Remove window border styles to prevent Vista-style frame
+            long style = Externs.GetWindowLong(sdlWindowHandle, Externs.GWL_STYLE);
+            style &= ~(Externs.WS_CAPTION | Externs.WS_THICKFRAME | Externs.WS_MINIMIZE |
+                       Externs.WS_MAXIMIZE | Externs.WS_SYSMENU | Externs.WS_BORDER | Externs.WS_DLGFRAME);
+            style |= Externs.WS_CHILD | Externs.WS_VISIBLE;
+            Externs.SetWindowLong(sdlWindowHandle, Externs.GWL_STYLE, style);
+
+            // Force window frame refresh to apply style changes
+            Externs.SetWindowPos(sdlWindowHandle, IntPtr.Zero, 0, 0, 0, 0,
+                Externs.SWP_FRAMECHANGED | Externs.SWP_NOMOVE | Externs.SWP_NOSIZE |
+                Externs.SWP_NOZORDER | Externs.SWP_NOACTIVATE);
+
+            // Disable rounded corners (Windows 11) - must be done before SetParent
+            int preference = Externs.DWMWCP_DONOTROUND;
+            Externs.DwmSetWindowAttribute(sdlWindowHandle, Externs.DWMWA_WINDOW_CORNER_PREFERENCE, ref preference, sizeof(int));
+
             // Set SDL window as child of panel
             SetParent(sdlWindowHandle, panel_extern.Handle);
             Externs.SetWindowPosition(0, 0);
 
-            //MoveWindow(sdlWindowHandle, 0, 0, panel1.Width, panel1.Height, true);
+            // Size the SDL window to match the panel
+            Externs.MoveWindow(sdlWindowHandle, 0, 0, panel_extern.Width, panel_extern.Height, true);
 
             // Load default state (CollisionTestState)
             Externs.LoadState(0);
@@ -119,7 +136,6 @@ namespace csharp_bmfg {
         }
 
         public void PreRender() {
-
             //Externs.PreRender();
         }
 
@@ -127,12 +143,16 @@ namespace csharp_bmfg {
             Externs.Render();
         }
 
-        public void PostRender() {
-            //Externs.PostRender();
+        public void SwapBuffers() {
+            Externs.SwapBuffers();
         }
 
-        public void Tick() {
+        public void UpdateFrame() {
             Externs.UpdateFrame();
+        }
+
+        public void mouseClick(int x, int y) {
+            Externs.OnMouseClick(x, y);
         }
 
         private void MainView_MouseClick(object sender, MouseEventArgs e) {
@@ -150,8 +170,8 @@ namespace csharp_bmfg {
             // 
             // panel_extern
             // 
-            panel_extern.BackColor = SystemColors.ControlDark;
             panel_extern.Dock = DockStyle.Fill;
+            panel_extern.Enabled = false;
             panel_extern.Location = new Point(0, 0);
             panel_extern.Name = "panel_extern";
             panel_extern.Size = new Size(150, 150);
