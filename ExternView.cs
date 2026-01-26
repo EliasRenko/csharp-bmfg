@@ -12,9 +12,6 @@ namespace csharp_bmfg {
         public ExternView() {
 
             InitializeComponent();
-
-            // ** Events
-            MouseClick += MainView_MouseClick;
         }
 
         // CallbackDelegate callback
@@ -155,11 +152,23 @@ namespace csharp_bmfg {
             Externs.OnMouseClick(x, y);
         }
 
-        private void MainView_MouseClick(object sender, MouseEventArgs e) {
+        private void FocusSdlWindow() {
+            if (sdlWindowHandle != IntPtr.Zero && active) {
+                Externs.SetFocus(sdlWindowHandle);
+            }
+        }
 
-            //logCallback?.Invoke("X: " + e.X + " Y: " + e.Y);
+        private void Panel_MouseEnter(object sender, EventArgs e) {
+            // Only focus SDL window when mouse enters the panel area
+            FocusSdlWindow();
+        }
 
-            //Externs.OnMouseClick(e.X, e.Y);
+        private void Panel_MouseLeave(object sender, EventArgs e) {
+            // Return focus to parent form when mouse leaves panel
+            var parentForm = FindForm();
+            if (parentForm != null) {
+                parentForm.Focus();
+            }
         }
 
         private Panel panel_extern;
@@ -176,6 +185,9 @@ namespace csharp_bmfg {
             panel_extern.Name = "panel_extern";
             panel_extern.Size = new Size(150, 150);
             panel_extern.TabIndex = 0;
+
+            panel_extern.MouseEnter += Panel_MouseEnter;
+            panel_extern.MouseLeave += Panel_MouseLeave;
             // 
             // ExternView
             // 

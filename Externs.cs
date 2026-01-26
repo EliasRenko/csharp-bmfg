@@ -109,6 +109,12 @@ namespace csharp_bmfg {
         [DllImport("user32.dll")]
         public static extern bool EnableWindow(IntPtr hWnd, bool bEnable);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetFocus(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern bool BringWindowToTop(IntPtr hWnd);
+
         [DllImport("user32.dll", EntryPoint = "GetWindowLongA")]
         public static extern long GetWindowLong(IntPtr hWnd, int nIndex);
 
