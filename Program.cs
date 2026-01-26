@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace csharp_bmfg {
     static class Program {
-        public static Editor editor;
+        public static Editor? editor;
 
         [STAThread]
         static void Main() {
@@ -12,23 +12,21 @@ namespace csharp_bmfg {
             Application.SetCompatibleTextRenderingDefault(false);
 
             // ---
-
             editor = new Editor();
             editor.Show();
 
             while (editor.active) {
+
+                Application.DoEvents();
 
                 editor.UpdateFrame();
 
                 editor.PreRender();
                 editor.Render();
                 editor.SwapBuffers();
-
-                Application.DoEvents();
             }
 
             // ---
-
             Application.Exit();
         }
     }
