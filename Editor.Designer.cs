@@ -26,6 +26,7 @@ namespace csharp_bmfg {
         /// </summary>
         private void InitializeComponent() {
             view_extern = new ExternView();
+            console = new Console();
             SuspendLayout();
             // 
             // view_extern
@@ -37,11 +38,20 @@ namespace csharp_bmfg {
             view_extern.TabIndex = 0;
             view_extern.MouseDown += view_extern_MouseDown;
             // 
+            // console
+            // 
+            console.Dock = DockStyle.Bottom;
+            console.Location = new Point(0, 327);
+            console.Name = "console";
+            console.Size = new Size(624, 114);
+            console.TabIndex = 1;
+            // 
             // Editor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 441);
+            Controls.Add(console);
             Controls.Add(view_extern);
             Name = "Editor";
             Text = "Editor";
@@ -51,5 +61,6 @@ namespace csharp_bmfg {
         #endregion
 
         private ExternView view_extern;
+        private Console console;
     }
 }

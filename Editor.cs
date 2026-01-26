@@ -15,8 +15,12 @@ namespace csharp_bmfg {
 
             view_extern.Init(callback);
 
+            // Enable keyboard events at form level
+            KeyPreview = true;
+
             // Events
-            this.FormClosing += Form1_FormClosing;
+            FormClosing += Editor_FormClosing;
+            KeyDown += Editor_KeyDown;
         }
 
         public void UpdateFrame() {
@@ -48,9 +52,17 @@ namespace csharp_bmfg {
 
         #region Events
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e) {
             view_extern.Release();
             active = false;
+        }
+
+        private void Editor_KeyDown(object sender, KeyEventArgs e) {
+            // Toggle console with tilde key (~) or F1
+            if (e.KeyCode == Keys.Oemtilde || e.KeyCode == Keys.F1) {
+                console.Visible = !console.Visible;
+                e.Handled = true;
+            }
         }
 
         #endregion

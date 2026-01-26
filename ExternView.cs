@@ -6,7 +6,6 @@ namespace csharp_bmfg {
         public CallbackDelegate logCallback;
         public bool active = false;
 
-        //private Panel panel_extern;
         private IntPtr sdlWindowHandle = IntPtr.Zero;
 
         public ExternView() {
@@ -62,18 +61,6 @@ namespace csharp_bmfg {
 
             // Load default state (CollisionTestState)
             Externs.LoadState(0);
-
-            //engineInitialized = true;
-            //btnRunEngine.Enabled = false;
-
-            // Start delta timer
-            //deltaTimer.Start();
-
-            // Start render loop on UI thread - runs continuously
-            //renderTimer = new System.Windows.Forms.Timer();
-            //renderTimer.Interval = 1; // Run as fast as possible, limited by VSync
-            //renderTimer.Tick += RenderFrame;
-            //renderTimer.Start();
 
             active = true;
 
@@ -153,7 +140,7 @@ namespace csharp_bmfg {
         }
 
         public void mouseClick(int x, int y) {
-            //Externs.OnMouseClick(x, y);
+            Externs.OnMouseClick(x, y);
         }
 
         private void MainView_MouseClick(object sender, MouseEventArgs e) {
@@ -164,13 +151,10 @@ namespace csharp_bmfg {
         }
 
         private void ExternView_Resize(object sender, EventArgs e) {
-            // if (sdlWindowHandle != IntPtr.Zero && active && panel_extern != null) {
-            //     // Resize both the Win32 window and notify SDL
-            //     Externs.MoveWindow(sdlWindowHandle, 0, 0, panel_extern.Width, panel_extern.Height, true);
-            //     Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
-            // }
-
-            Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
+            if (sdlWindowHandle != IntPtr.Zero && active && panel_extern != null) {
+                Externs.MoveWindow(sdlWindowHandle, 0, 0, panel_extern.Width, panel_extern.Height, true);
+                //Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
+            }
         }
 
         private Panel panel_extern;
@@ -193,10 +177,6 @@ namespace csharp_bmfg {
             Controls.Add(panel_extern);
             Name = "ExternView";
             ResumeLayout(false);
-        }
-
-        private void view_Load(object sender, EventArgs e) {
-
         }
     }
 }
