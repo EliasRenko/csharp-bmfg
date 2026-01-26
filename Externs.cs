@@ -75,6 +75,9 @@ namespace csharp_bmfg {
         [DllImport(DLL, EntryPoint = "setWindowPosition")]
         public static extern void SetWindowPosition(int x, int y);
 
+        [DllImport(DLL, EntryPoint = "setWindowSize")]
+        public static extern void SetWindowSize(int width, int height);
+
         [DllImport(DLL, EntryPoint = "Add", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         public static extern int Add(int a, int b, string input, CallbackDelegate callback);
 

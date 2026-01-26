@@ -15,6 +15,7 @@ namespace csharp_bmfg {
 
             // ** Events
             MouseClick += MainView_MouseClick;
+            Resize += ExternView_Resize;
         }
 
         // CallbackDelegate callback
@@ -160,6 +161,16 @@ namespace csharp_bmfg {
             //logCallback?.Invoke("X: " + e.X + " Y: " + e.Y);
 
             //Externs.OnMouseClick(e.X, e.Y);
+        }
+
+        private void ExternView_Resize(object sender, EventArgs e) {
+            // if (sdlWindowHandle != IntPtr.Zero && active && panel_extern != null) {
+            //     // Resize both the Win32 window and notify SDL
+            //     Externs.MoveWindow(sdlWindowHandle, 0, 0, panel_extern.Width, panel_extern.Height, true);
+            //     Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
+            // }
+
+            Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
         }
 
         private Panel panel_extern;
