@@ -28,14 +28,16 @@ namespace csharp_bmfg {
             view_extern = new ExternView();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
-            openToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem_open = new ToolStripMenuItem();
             exportToolStripMenuItem = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
             viewToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             console = new Console();
+            numericUpDown_size = new NumericUpDown();
             menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_size).BeginInit();
             SuspendLayout();
             // 
             // view_extern
@@ -59,16 +61,16 @@ namespace csharp_bmfg {
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, exportToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem_open, exportToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(37, 20);
             fileToolStripMenuItem.Text = "File";
             // 
-            // openToolStripMenuItem
+            // toolStripMenuItem_open
             // 
-            openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(108, 22);
-            openToolStripMenuItem.Text = "Open";
+            toolStripMenuItem_open.Name = "toolStripMenuItem_open";
+            toolStripMenuItem_open.Size = new Size(108, 22);
+            toolStripMenuItem_open.Text = "Open";
             // 
             // exportToolStripMenuItem
             // 
@@ -110,11 +112,21 @@ namespace csharp_bmfg {
             console.Size = new Size(624, 128);
             console.TabIndex = 3;
             // 
+            // numericUpDown_size
+            // 
+            numericUpDown_size.BorderStyle = BorderStyle.None;
+            numericUpDown_size.Location = new Point(570, 27);
+            numericUpDown_size.Name = "numericUpDown_size";
+            numericUpDown_size.Size = new Size(42, 19);
+            numericUpDown_size.TabIndex = 4;
+            numericUpDown_size.Value = new decimal(new int[] { 20, 0, 0, 0 });
+            // 
             // Editor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 441);
+            Controls.Add(numericUpDown_size);
             Controls.Add(console);
             Controls.Add(view_extern);
             Controls.Add(menuStrip1);
@@ -124,6 +136,7 @@ namespace csharp_bmfg {
             Text = "Editor";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown_size).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,9 +149,10 @@ namespace csharp_bmfg {
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem_open;
         private ToolStripMenuItem exportToolStripMenuItem;
         private StatusStrip statusStrip1;
         private Console console;
+        private NumericUpDown numericUpDown_size;
     }
 }

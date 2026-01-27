@@ -139,6 +139,10 @@ namespace csharp_bmfg {
             Externs.UpdateFrame();
         }
 
+        public void LoadAndBakeFont(string filename, int size) {
+            Externs.LoadAndBakeFont(filename, size);
+        }
+
         public void mouseClick(int x, int y) {
             Externs.OnMouseClick(x, y);
         }

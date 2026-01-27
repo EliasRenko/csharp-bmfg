@@ -1,5 +1,3 @@
-using csharp_bmfg;
-
 namespace csharp_bmfg {
     public partial class Editor : Form {
 
@@ -21,6 +19,8 @@ namespace csharp_bmfg {
             // Events
             FormClosing += Editor_FormClosing;
             KeyDown += Editor_KeyDown;
+
+            toolStripMenuItem_open.MouseUp += toolStripButton_openFile;
         }
 
         public void UpdateFrame() {
@@ -39,16 +39,20 @@ namespace csharp_bmfg {
             view_extern.SwapBuffers();
         }
 
+        #region core
+
+        private void LoadTTF(string path) {
+            view_extern.LoadAndBakeFont(path, (int)numericUpDown_size.Value);
+        }
+
+        #endregion
+
         #region Log
         public void Log(String text) {
             // Check if form and console are not disposed
             if (!IsDisposed && console != null && !console.IsDisposed) {
                 console.Log(text);
             }
-        }
-
-        private void LogCallback(string result) {
-            Log(result);
         }
 
         #endregion
@@ -68,12 +72,44 @@ namespace csharp_bmfg {
                 console.Visible = !console.Visible;
                 e.Handled = true;
             }
+
+            if (e.KeyCode == Keys.O || e.KeyCode == Keys.P) {
+
+            }
         }
 
         #endregion
 
         private void view_extern_MouseDown(object sender, MouseEventArgs e) {
             view_extern.mouseClick(e.X, e.Y);
+        }
+
+        private void toolStripButton_openFile(object sender, MouseEventArgs e) {
+            string path = Utils.OpenFile("");
+            string ext = Path.GetExtension(path);
+
+            switch (ext) {
+
+                case ".json":
+
+
+
+                    break;
+
+                case ".ttf":
+
+                    LoadTTF(path);
+
+                    break;
+
+                case "":
+
+                    return;
+
+                default:
+
+                    throw new Exception("Invalid file name");
+            }
         }
     }
 }

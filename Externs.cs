@@ -18,6 +18,10 @@ namespace csharp_bmfg {
         public static extern void LoadTexture(string filepath, int tileSize, string id);
 
 
+        [DllImport(DLL, EntryPoint = "loadAndBakeFont", CharSet = CharSet.Ansi)]
+        public static extern void LoadAndBakeFont(string fontPath, float fontSize);
+
+
         [DllImport(DLL, EntryPoint = "release")]
         public static extern void Release();
 
