@@ -8,7 +8,9 @@ namespace csharp_bmfg {
         }
 
         public void Log(string message) {
-            richTextBox_log.AppendText(message + Environment.NewLine);
+            if (!IsDisposed && !richTextBox_log.IsDisposed) {
+                richTextBox_log.AppendText(message + Environment.NewLine);
+            }
         }
     }
 }

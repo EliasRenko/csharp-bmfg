@@ -41,7 +41,10 @@ namespace csharp_bmfg {
 
         #region Log
         public void Log(String text) {
-
+            // Check if form and console are not disposed
+            if (!IsDisposed && console != null && !console.IsDisposed) {
+                console.Log(text);
+            }
         }
 
         private void LogCallback(string result) {
@@ -53,8 +56,10 @@ namespace csharp_bmfg {
         #region Events
 
         private void Editor_FormClosing(object sender, FormClosingEventArgs e) {
-            view_extern.Release();
             active = false;
+            Application.DoEvents(); // Process remaining messages
+            System.Threading.Thread.Sleep(50); // Give loop time to exit
+            view_extern.Release();
         }
 
         private void Editor_KeyDown(object sender, KeyEventArgs e) {

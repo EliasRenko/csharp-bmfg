@@ -15,7 +15,7 @@ namespace csharp_bmfg {
             editor = new Editor();
             editor.Show();
 
-            while (editor.active) {
+            while (editor.active == true) {
 
                 Application.DoEvents();
 

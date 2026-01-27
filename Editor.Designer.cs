@@ -26,25 +26,89 @@ namespace csharp_bmfg {
         /// </summary>
         private void InitializeComponent() {
             view_extern = new ExternView();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
+            exportToolStripMenuItem = new ToolStripMenuItem();
+            editToolStripMenuItem = new ToolStripMenuItem();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            statusStrip1 = new StatusStrip();
             console = new Console();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // view_extern
             // 
+            view_extern.BackColor = SystemColors.ControlDark;
             view_extern.Dock = DockStyle.Fill;
-            view_extern.Location = new Point(0, 0);
+            view_extern.Location = new Point(0, 24);
             view_extern.Name = "view_extern";
-            view_extern.Size = new Size(624, 441);
+            view_extern.Size = new Size(624, 395);
             view_extern.TabIndex = 0;
             view_extern.MouseDown += view_extern_MouseDown;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, viewToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(624, 24);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, exportToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.Size = new Size(108, 22);
+            openToolStripMenuItem.Text = "Open";
+            // 
+            // exportToolStripMenuItem
+            // 
+            exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            exportToolStripMenuItem.Size = new Size(108, 22);
+            exportToolStripMenuItem.Text = "Export";
+            // 
+            // editToolStripMenuItem
+            // 
+            editToolStripMenuItem.Name = "editToolStripMenuItem";
+            editToolStripMenuItem.Size = new Size(39, 20);
+            editToolStripMenuItem.Text = "Edit";
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(44, 20);
+            viewToolStripMenuItem.Text = "View";
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Location = new Point(0, 419);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(624, 22);
+            statusStrip1.TabIndex = 2;
+            statusStrip1.Text = "statusStrip1";
             // 
             // console
             // 
             console.Dock = DockStyle.Bottom;
-            console.Location = new Point(0, 327);
+            console.Location = new Point(0, 291);
             console.Name = "console";
-            console.Size = new Size(624, 114);
-            console.TabIndex = 1;
+            console.Size = new Size(624, 128);
+            console.TabIndex = 3;
             // 
             // Editor
             // 
@@ -53,14 +117,28 @@ namespace csharp_bmfg {
             ClientSize = new Size(624, 441);
             Controls.Add(console);
             Controls.Add(view_extern);
+            Controls.Add(menuStrip1);
+            Controls.Add(statusStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Editor";
             Text = "Editor";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private ExternView view_extern;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem exportToolStripMenuItem;
+        private StatusStrip statusStrip1;
         private Console console;
     }
 }
