@@ -17,11 +17,6 @@ namespace csharp_bmfg {
         [DllImport(DLL, EntryPoint = "loadTexture", CharSet = CharSet.Ansi)]
         public static extern void LoadTexture(string filepath, int tileSize, string id);
 
-
-        [DllImport(DLL, EntryPoint = "loadAndBakeFont", CharSet = CharSet.Ansi)]
-        public static extern void LoadAndBakeFont(string fontPath, float fontSize);
-
-
         [DllImport(DLL, EntryPoint = "release")]
         public static extern void Release();
 
@@ -88,8 +83,35 @@ namespace csharp_bmfg {
         [DllImport(DLL, EntryPoint = "setLogDispacher", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Ansi)]
         public static extern void SetLogDispacher(CallbackDelegate callback);
 
-        [DllImport(DLL, EntryPoint = "onMouseClick")]
-        public static extern void OnMouseClick(int x, int y);
+        #region Input
+
+        [DllImport(DLL, EntryPoint = "onMouseButtonDown")]
+        public static extern void OnMouseButtonDown(int x, int y, int button);
+
+        [DllImport(DLL, EntryPoint = "onMouseButtonUp")]
+        public static extern void OnMouseButtonUp(int x, int y, int button);
+
+        [DllImport(DLL, EntryPoint = "onKeyboardDown")]
+        public static extern void OnKeyboardDown(int keyCode);
+
+        [DllImport(DLL, EntryPoint = "onKeyboardUp")]
+        public static extern void OnKeyboardUp(int keyCode);
+
+        #endregion
+
+        // BMFG
+
+        [DllImport(DLL, EntryPoint = "importFont", CharSet = CharSet.Ansi)]
+        public static extern void ImportFont(string fontPath, float fontSize);
+
+        [DllImport(DLL, EntryPoint = "exportFont", CharSet = CharSet.Ansi)]
+        public static extern void ExportFont(string fontPath);
+
+        [DllImport(DLL, EntryPoint = "loadFont", CharSet = CharSet.Ansi)]
+        public static extern void LoadFont(string outputName);
+
+        [DllImport(DLL, EntryPoint = "rebakeFont")]
+        public static extern void RebakeFont(float fontSize, int atlasWidth, int atlasHeight, int firstChar, int numChars);
 
         #region WinAPI Entry Points
 

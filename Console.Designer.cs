@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             label_log = new Label();
             richTextBox_log = new RichTextBox();
+            button_copy = new Button();
             SuspendLayout();
             // 
             // label_log
@@ -47,10 +48,21 @@
             richTextBox_log.TabIndex = 1;
             richTextBox_log.Text = "";
             // 
+            // button_copy
+            // 
+            button_copy.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button_copy.Location = new Point(242, 5);
+            button_copy.Name = "button_copy";
+            button_copy.Size = new Size(75, 23);
+            button_copy.TabIndex = 2;
+            button_copy.Text = "Copy";
+            button_copy.UseVisualStyleBackColor = true;
+            // 
             // Console
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(button_copy);
             Controls.Add(label_log);
             Controls.Add(richTextBox_log);
             Name = "Console";
@@ -63,5 +75,6 @@
 
         private Label label_log;
         private RichTextBox richTextBox_log;
+        private Button button_copy;
     }
 }

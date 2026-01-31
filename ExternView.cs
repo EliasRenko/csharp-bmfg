@@ -139,12 +139,36 @@ namespace csharp_bmfg {
             Externs.UpdateFrame();
         }
 
-        public void LoadAndBakeFont(string filename, int size) {
-            Externs.LoadAndBakeFont(filename, size);
+        public void ImportFont(string filename, int size) {
+            Externs.ImportFont(filename, size);
         }
 
-        public void mouseClick(int x, int y) {
-            Externs.OnMouseClick(x, y);
+        public void LoadFont(string filename) {
+            Externs.LoadFont(filename);
+        }
+
+        public void ExportFont(string filename) {
+            Externs.ExportFont(filename);
+        }
+
+        public void RebakeFont(float fontSize, int atlasWidth, int atlasHeight, int firstChar, int numChars) {
+            Externs.RebakeFont(fontSize, atlasWidth, atlasHeight, firstChar, numChars);
+        }
+
+        public void OnMouseButtonDown(int x, int y, int button) {
+            Externs.OnMouseButtonDown(x, y, button);
+        }
+
+        public void OnMouseButtonUp(int x, int y, int button) {
+            Externs.OnMouseButtonUp(x, y, button);
+        }
+
+        public void OnKeyboardDown(int keyCode) {
+            Externs.OnKeyboardDown(keyCode);
+        }
+
+        public void OnKeyboardUp(int keyCode) {
+            Externs.OnKeyboardUp(keyCode);
         }
 
         private void MainView_MouseClick(object sender, MouseEventArgs e) {

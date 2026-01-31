@@ -29,13 +29,14 @@ namespace csharp_bmfg {
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             toolStripMenuItem_open = new ToolStripMenuItem();
-            exportToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem_export = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
             viewToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             console = new Console();
             numericUpDown_size = new NumericUpDown();
+            button_rebake = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown_size).BeginInit();
             SuspendLayout();
@@ -48,7 +49,6 @@ namespace csharp_bmfg {
             view_extern.Name = "view_extern";
             view_extern.Size = new Size(624, 395);
             view_extern.TabIndex = 0;
-            view_extern.MouseDown += view_extern_MouseDown;
             // 
             // menuStrip1
             // 
@@ -61,7 +61,7 @@ namespace csharp_bmfg {
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem_open, exportToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem_open, toolStripMenuItem_export });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(37, 20);
             fileToolStripMenuItem.Text = "File";
@@ -72,11 +72,11 @@ namespace csharp_bmfg {
             toolStripMenuItem_open.Size = new Size(108, 22);
             toolStripMenuItem_open.Text = "Open";
             // 
-            // exportToolStripMenuItem
+            // toolStripMenuItem_export
             // 
-            exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            exportToolStripMenuItem.Size = new Size(108, 22);
-            exportToolStripMenuItem.Text = "Export";
+            toolStripMenuItem_export.Name = "toolStripMenuItem_export";
+            toolStripMenuItem_export.Size = new Size(108, 22);
+            toolStripMenuItem_export.Text = "Export";
             // 
             // editToolStripMenuItem
             // 
@@ -115,17 +115,27 @@ namespace csharp_bmfg {
             // numericUpDown_size
             // 
             numericUpDown_size.BorderStyle = BorderStyle.None;
-            numericUpDown_size.Location = new Point(570, 27);
+            numericUpDown_size.Location = new Point(570, 31);
             numericUpDown_size.Name = "numericUpDown_size";
             numericUpDown_size.Size = new Size(42, 19);
             numericUpDown_size.TabIndex = 4;
             numericUpDown_size.Value = new decimal(new int[] { 20, 0, 0, 0 });
+            // 
+            // button_rebake
+            // 
+            button_rebake.Location = new Point(489, 27);
+            button_rebake.Name = "button_rebake";
+            button_rebake.Size = new Size(75, 23);
+            button_rebake.TabIndex = 5;
+            button_rebake.Text = "Rebake";
+            button_rebake.UseVisualStyleBackColor = true;
             // 
             // Editor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(624, 441);
+            Controls.Add(button_rebake);
             Controls.Add(numericUpDown_size);
             Controls.Add(console);
             Controls.Add(view_extern);
@@ -150,9 +160,10 @@ namespace csharp_bmfg {
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem_open;
-        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem_export;
         private StatusStrip statusStrip1;
         private Console console;
         private NumericUpDown numericUpDown_size;
+        private Button button_rebake;
     }
 }
