@@ -38,8 +38,8 @@ namespace csharp_bmfg {
             view_extern.RebakeFont((int)numericUpDown_size.Value, 512, 512, 32, 96);
         }
 
-        public void UpdateFrame() {
-            view_extern.UpdateFrame();
+        public void UpdateFrame(float deltaTime) {
+            view_extern.UpdateFrame(deltaTime);
         }
 
         public void PreRender() {

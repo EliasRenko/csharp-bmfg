@@ -135,8 +135,8 @@ namespace csharp_bmfg {
             Externs.SwapBuffers();
         }
 
-        public void UpdateFrame() {
-            Externs.UpdateFrame();
+        public void UpdateFrame(float deltaTime) {
+            Externs.UpdateFrame(deltaTime);
         }
 
         public void ImportFont(string filename, int size) {

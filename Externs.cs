@@ -24,7 +24,7 @@ namespace csharp_bmfg {
         public static extern int InitWithCallback(CallbackDelegate callback);
 
         [DllImport(DLL, EntryPoint = "updateFrame")]
-        public static extern void UpdateFrame();
+        public static extern void UpdateFrame(float deltaTime);
 
         [DllImport(DLL, EntryPoint = "preRender")]
         public static extern void PreRender();
