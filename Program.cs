@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace csharp_bmfg {
     static class Program {

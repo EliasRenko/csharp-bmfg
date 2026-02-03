@@ -13,7 +13,7 @@ namespace csharp_bmfg {
             InitializeComponent();
 
             // ** Events
-            MouseClick += MainView_MouseClick;
+            //MouseClick += MainView_MouseClick;
             Resize += ExternView_Resize;
         }
 
@@ -63,68 +63,17 @@ namespace csharp_bmfg {
             Externs.LoadState(0);
 
             active = true;
-
-            //Externs.Init();
-            //Externs.InitWithCallback(callback);
-
-            //Externs.CreateWindowFrom(Handle);
-
-            //IntPtr sdlHandle = Externs.GetHandle();
-
-            // ** Get the parent window handle.
-            //IntPtr windowHandle = Handle;
-
-            //Externs.SetWindowPos(
-            //    sdlHandle,
-            //    Handle,
-            //    0,
-            //    0,
-            //    0,
-            //    0,
-            //    0x0401 // NOSIZE | SHOWWINDOW
-            //);
-
-            // Attach the SDL2 window to the panel
-            //Externs.SetParent(sdlHandle, Handle);
-            //Externs.ShowWindow(sdlHandle, 1); // SHOWNORMAL
-            //Externs.SetWindowLongA(sdlHandle, 0, 0x80000000L);
-            //Externs.EnableWindow(sdlHandle, true);
         }
 
         public void Release() {
-
-            if (active == true) {
+            if (active) {
+                active = false;
                 Externs.Release();
+                
+                if (sdlWindowHandle != IntPtr.Zero) {
+                    sdlWindowHandle = IntPtr.Zero;
+                }
             }
-        }
-
-        public void AddEntity(int id) {
-
-            //Externs.AddEntity(id);
-        }
-
-        public void SelectEntity(int id) {
-
-            //Externs.SelectEntity(id);
-        }
-
-        public void DeselectEntity() {
-
-            //Externs.DeselectEntity();
-        }
-
-        public void UpdateEntity(int id, int x, int y) {
-
-            //Externs.UpdateEntity(id, x, y);
-        }
-
-        public void UpdateMap(string hex) {
-
-            //Externs.UpdateMap(hex);
-        }
-
-        public void PreRender() {
-            //Externs.PreRender();
         }
 
         public void Render() {
@@ -143,18 +92,6 @@ namespace csharp_bmfg {
             Externs.ImportFont(filename, size);
         }
 
-        public void LoadFont(string filename) {
-            Externs.LoadFont(filename);
-        }
-
-        public void ExportFont(string filename) {
-            Externs.ExportFont(filename);
-        }
-
-        public void RebakeFont(float fontSize, int atlasWidth, int atlasHeight, int firstChar, int numChars) {
-            Externs.RebakeFont(fontSize, atlasWidth, atlasHeight, firstChar, numChars);
-        }
-
         public void OnMouseButtonDown(int x, int y, int button) {
             Externs.OnMouseButtonDown(x, y, button);
         }
@@ -171,20 +108,29 @@ namespace csharp_bmfg {
             Externs.OnKeyboardUp(keyCode);
         }
 
-        private void MainView_MouseClick(object sender, MouseEventArgs e) {
-
-            //logCallback?.Invoke("X: " + e.X + " Y: " + e.Y);
-
-            //Externs.OnMouseClick(e.X, e.Y);
-        }
-
         private void ExternView_Resize(object sender, EventArgs e) {
             if (sdlWindowHandle != IntPtr.Zero && active && panel_extern != null) {
                 Externs.MoveWindow(sdlWindowHandle, 0, 0, panel_extern.Width, panel_extern.Height, true);
                 //Externs.SetWindowSize(panel_extern.Width, panel_extern.Height);
             }
         }
+        
+        #region Core
+        
+        public void LoadFont(string filename) {
+            Externs.LoadFont(filename);
+        }
 
+        public void ExportFont(string filename) {
+            Externs.ExportFont(filename);
+        }
+
+        public void RebakeFont(float fontSize, int atlasWidth, int atlasHeight, int firstChar, int numChars) {
+            Externs.RebakeFont(fontSize, atlasWidth, atlasHeight, firstChar, numChars);
+        }
+        
+        #endregion
+        
         private Panel panel_extern;
 
         private void InitializeComponent() {

@@ -1,10 +1,7 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Xml.Linq;
-
 namespace csharp_bmfg {
     public partial class Editor : Form {
 
-        public bool active;
+        public bool active = false;
         public Editor() {
             InitializeComponent();
 
@@ -43,7 +40,7 @@ namespace csharp_bmfg {
         }
 
         public void PreRender() {
-            view_extern.PreRender();
+            //view_extern.PreRender();
         }
 
         public void Render() {
@@ -54,7 +51,7 @@ namespace csharp_bmfg {
             view_extern.SwapBuffers();
         }
 
-        #region core
+        #region Core
 
         private void LoadJson(string path) {
             view_extern.LoadFont(path);
@@ -118,61 +115,52 @@ namespace csharp_bmfg {
 
         private void toolStripButton_openFile(object sender, MouseEventArgs e) {
             string path = Utils.OpenFile("");
-            string ext = Path.GetExtension(path);
+            
+            // User cancelled or invalid path
+            if (string.IsNullOrEmpty(path)) {
+                return;
+            }
+
+            string ext = Path.GetExtension(path).ToLowerInvariant();
 
             switch (ext) {
-
                 case ".json":
-
                     LoadJson(path);
-
                     break;
 
                 case ".ttf":
-
                     LoadTTF(path);
-
                     break;
 
-                case "":
-
-                    return;
-
                 default:
-
-                    throw new Exception("Invalid file name");
+                    MessageBox.Show($"Unsupported file type: {ext}\nSupported types: .json, .ttf",
+                        "Invalid File Type", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
             }
         }
 
         private void toolStripButton_export(object sender, MouseEventArgs e) {
-
-            string startingPath = System.AppContext.BaseDirectory;
+            string startingPath = AppContext.BaseDirectory;
             string name = "default";
             string exten = "json";
 
             try {
-                SaveFileDialog dialog = new SaveFileDialog();
+                using (var dialog = new SaveFileDialog()) {
+                    dialog.Filter = $"{exten.ToUpper()} Files (*.{exten})|*.{exten}|All Files (*.*)|*.*";
+                    dialog.FilterIndex = 1;
+                    dialog.InitialDirectory = startingPath;
+                    dialog.FileName = name;
+                    dialog.DefaultExt = exten;
+                    dialog.AddExtension = true;
 
-                // Set up file filter based on extension
-                dialog.Filter = $"{exten.ToUpper()} Files (*.{exten})|*.{exten}|All Files (*.*)|*.*";
-                dialog.FilterIndex = 1;
-                dialog.InitialDirectory = startingPath;
-                dialog.FileName = name;
-                dialog.DefaultExt = exten;
-                dialog.AddExtension = true;
-
-                if (dialog.ShowDialog() == DialogResult.OK) {
-                    string sFileName = dialog.FileName;
-
-                    // Write the data to the selected file
-                    view_extern.ExportFont(sFileName);
+                    if (dialog.ShowDialog() == DialogResult.OK) {
+                        view_extern.ExportFont(dialog.FileName);
+                    }
                 }
             }
             catch (Exception ex) {
                 MessageBox.Show($"Error saving file: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

@@ -1,13 +1,6 @@
-using System.Windows.Forms;
-
 namespace csharp_bmfg {
     public static class KeyMapper {
-        /// <summary>
-        /// Converts Windows Forms Keys to SDL Keycode values
-        /// Based on SDL_Keycode enum from SDL3
-        /// </summary>
         public static int ToSDLScancode(Keys key) {
-            // SDL keycodes are based on ASCII for printable characters
             switch (key) {
                 // Letters A-Z (SDL: 97-122, lowercase ASCII)
                 case Keys.A: return 97;
