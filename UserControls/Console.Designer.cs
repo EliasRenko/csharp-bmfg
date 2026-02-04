@@ -1,5 +1,5 @@
 ﻿using csharp_bmfg.UserControls;
-namespace csharp_bmfg {
+namespace csharp_bmfg.UserControls {
     partial class Console {
         /// <summary> 
         /// Required designer variable.

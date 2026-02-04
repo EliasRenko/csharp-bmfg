@@ -1,4 +1,5 @@
-﻿using csharp_bmfg;
+﻿using csharp_bmfg.UserControls;
+using csharp_bmfg;
 
 namespace csharp_bmfg {
     partial class Editor {
@@ -34,7 +35,7 @@ namespace csharp_bmfg {
             viewToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
-            console = new Console();
+            console = new UserControls.Console();
             numericUpDown_size = new NumericUpDown();
             button_rebake = new Button();
             menuStrip1.SuspendLayout();
@@ -162,7 +163,7 @@ namespace csharp_bmfg {
         private ToolStripMenuItem toolStripMenuItem_open;
         private ToolStripMenuItem toolStripMenuItem_export;
         private StatusStrip statusStrip1;
-        private Console console;
+        private UserControls.Console console;
         private NumericUpDown numericUpDown_size;
         private Button button_rebake;
     }
