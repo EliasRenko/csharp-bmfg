@@ -6,20 +6,16 @@ namespace csharp_bmfg {
         public Console() {
             InitializeComponent();
 
-            button_copy.Click += Button_copy_Click;
+            //button_copy.Click += Button_copy_Click;
         }
 
         private void Button_copy_Click(object sender, EventArgs e) {
-            if (!IsDisposed && !richTextBox_log.IsDisposed && !string.IsNullOrEmpty(richTextBox_log.Text)) {
-                Clipboard.SetText(richTextBox_log.Text);
-            }
+            // Copy functionality can be added to LogView if needed
         }
 
         public void Log(string message) {
-            if (!IsDisposed && !richTextBox_log.IsDisposed) {
-                richTextBox_log.AppendText(message + Environment.NewLine);
-                richTextBox_log.SelectionStart = richTextBox_log.Text.Length;
-                richTextBox_log.ScrollToCaret();
+            if (!IsDisposed && logView != null && !logView.IsDisposed) {
+                logView.Log(message);
             }
         }
     }
