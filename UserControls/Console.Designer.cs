@@ -1,4 +1,5 @@
-﻿namespace csharp_bmfg {
+﻿using csharp_bmfg.UserControls;
+namespace csharp_bmfg {
     partial class Console {
         /// <summary> 
         /// Required designer variable.
